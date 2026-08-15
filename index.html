@@ -3,153 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gote Janta Party (GJP) 🥜</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>Gote Janta Party (GJP) - Official</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
+        /* Base Styles */
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f8f9fa;
             color: #333;
             overflow-x: hidden;
         }
 
-        /* Desi Political Theme (Saffron, White, Green hints) */
-        header {
-            background: linear-gradient(90deg, #ff9933, #ff4500);
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            position: relative;
+        /* Professional Navbar */
+        .navbar {
+            background-color: #ffffff;
+            padding: 15px 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
-
-        .party-logo {
-            font-size: 80px;
-            margin: 0;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        h1 {
-            font-size: 40px;
-            margin: 10px 0;
-            text-transform: uppercase;
+        .navbar-brand {
+            font-size: 24px;
             font-weight: 900;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .tagline {
-            font-size: 20px;
-            font-style: italic;
-            font-weight: bold;
-            background: white;
             color: #ff4500;
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-
-        .container {
-            max-width: 800px;
-            margin: 30px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            font-weight: 700;
         }
+        .nav-links a { text-decoration: none; color: #333; transition: 0.3s; }
+        .nav-links a:hover { color: #ff9933; }
 
-        h2 {
-            color: #138808; /* Indian Green */
-            border-bottom: 3px solid #ff9933;
-            padding-bottom: 5px;
-            display: inline-block;
-        }
-
-        .manifesto-list {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .manifesto-list li {
-            background: #fff3e6;
-            margin: 10px 0;
-            padding: 15px;
-            border-left: 5px solid #ff4500;
-            border-radius: 5px;
-            font-size: 18px;
-        }
-
-        .yojna-card {
-            background: linear-gradient(135deg, #138808, #228b22);
+        /* Breaking News Ticker */
+        .news-ticker {
+            background: #d32f2f;
             color: white;
-            padding: 25px;
-            border-radius: 15px;
-            text-align: center;
-            margin-top: 30px;
-            box-shadow: 0 5px 15px rgba(19, 136, 8, 0.4);
-        }
-
-        .yojna-card h2 {
-            color: #ffd700;
-            border: none;
-            font-size: 30px;
-            margin-top: 0;
-        }
-
-        .join-btn {
-            background: #ff4500;
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 22px;
+            padding: 10px 0;
             font-weight: bold;
-            border-radius: 30px;
-            cursor: pointer;
-            display: block;
-            margin: 40px auto 20px auto;
-            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.4);
-            transition: 0.3s;
-            text-transform: uppercase;
+            font-size: 16px;
+            white-space: nowrap;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+        .news-ticker span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: ticker 15s linear infinite;
+        }
+        @keyframes ticker {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
         }
 
-        .join-btn:hover {
-            transform: scale(1.1);
-            background: #e63e00;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #333;
+        /* Hero Section */
+        header {
+            background: linear-gradient(135deg, #ff9933 0%, #ff4500 100%);
             color: white;
-            font-size: 14px;
-            margin-top: 40px;
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            border-bottom: 5px solid #138808;
         }
+        .party-logo { font-size: 80px; margin: 0; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        h1 { font-size: 45px; margin: 10px 0; text-transform: uppercase; font-weight: 900; letter-spacing: 1px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .tagline { font-size: 22px; font-style: italic; font-weight: bold; background: white; color: #ff4500; display: inline-block; padding: 8px 20px; border-radius: 30px; margin-top: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
 
-        /* Raining Emojis */
-        .emoji-drop {
-            position: fixed;
-            font-size: 30px;
-            z-index: 9999;
-            pointer-events: none;
-            animation: fall linear forwards;
-        }
+        /* Main Container */
+        .container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+        .section-card { background: white; border-radius: 15px; padding: 30px; margin-bottom: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-top: 4px solid #ff9933; }
+        h2 { color: #138808; font-weight: 900; font-size: 28px; margin-top: 0; display: flex; align-items: center; gap: 10px; border-bottom: 2px dashed #eee; padding-bottom: 10px; }
 
-        @keyframes fall {
-            to { transform: translateY(100vh) rotate(360deg); }
+        /* Poster Gallery Section */
+        .poster-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
         }
+        .poster-card {
+            background: #eee;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            position: relative;
+            border: 3px solid #ff9933;
+        }
+        .poster-card:hover { transform: scale(1.03); z-index: 10; }
+        .poster-card img { width: 100%; height: auto; display: block; }
+        .poster-caption { background: #333; color: white; text-align: center; padding: 10px; font-size: 14px; font-weight: bold; }
+
+        /* Manifesto */
+        .manifesto-list { list-style-type: none; padding: 0; }
+        .manifesto-list li { background: #fff8f0; margin: 15px 0; padding: 20px; border-left: 6px solid #ff4500; border-radius: 8px; font-size: 18px; font-weight: 400; transition: 0.2s; }
+        .manifesto-list li:hover { background: #ffe4cc; transform: translateX(5px); }
+
+        /* Yojna Card */
+        .yojna-card { background: linear-gradient(135deg, #138808, #228b22); color: white; padding: 35px; border-radius: 15px; text-align: center; box-shadow: 0 10px 20px rgba(19, 136, 8, 0.3); border: 2px solid #ffd700; position: relative; overflow: hidden; }
+        .yojna-card h2 { color: #ffd700; border: none; font-size: 35px; margin-top: 0; display: block; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
+
+        /* Join Button */
+        .join-btn { background: #ff4500; color: white; border: none; padding: 18px 50px; font-size: 24px; font-weight: 900; border-radius: 50px; cursor: pointer; display: block; margin: 0 auto; box-shadow: 0 8px 25px rgba(255, 69, 0, 0.4); transition: 0.3s; text-transform: uppercase; letter-spacing: 2px; }
+        .join-btn:hover { transform: translateY(-5px) scale(1.05); background: #e63e00; box-shadow: 0 12px 30px rgba(255, 69, 0, 0.6); }
+
+        footer { text-align: center; padding: 30px; background: #222; color: #ccc; font-size: 15px; border-top: 5px solid #ff9933; }
+        
+        .emoji-drop { position: fixed; font-size: 35px; z-index: 9999; pointer-events: none; animation: fall linear forwards; }
+        @keyframes fall { to { transform: translateY(100vh) rotate(360deg); } }
     </style>
 </head>
 <body>
 
-    <!-- Header Section -->
+    <!-- Professional Navbar -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <span>🥜</span> GJP Official
+        </div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#posters">Posters</a>
+            <a href="#manifesto">Manifesto</a>
+            <a href="#join">Join Party</a>
+        </div>
+    </nav>
+
+    <!-- Breaking News Ticker -->
+    <div class="news-ticker">
+        <span>🚨 BREAKING NEWS: GJP demands AC zones in local trains for immediate public relief! | Lakhs of frustrated youth joined the movement today. | Underwear companies face massive protests for tight elastics! 🚨</span>
+    </div>
+
+    <!-- Hero Section -->
     <header>
         <div class="party-logo">🥜🤌</div>
         <h1>Gote Janta Party (GJP)</h1>
@@ -157,74 +152,101 @@
     </header>
 
     <div class="container">
+        
         <!-- The Problem -->
-        <h2 style="color: #d32f2f;">The Real Issue 😔</h2>
-        <p style="font-size: 18px; line-height: 1.6;">
-            Bhaiyo! Kya hum sach mein azaad hain? 1947 mein desh azaad ho gaya, lekin humaare gote aaj bhi gulami ki zanjeeron (aur tight underwear) mein jakde hue hain. 
-            Public mein ek minor adjustment karne ke liye hume idhar-udhar dekhna padta hai. <b>THIS IS NOT TRUE FREEDOM!</b>
-        </p>
+        <div class="section-card" id="about">
+            <h2 style="color: #d32f2f;">🔥 The Real Issue</h2>
+            <p style="font-size: 18px; line-height: 1.8;">
+                Bhaiyo! Kya hum sach mein azaad hain? 1947 mein desh azaad ho gaya, lekin humaare gote aaj bhi gulami ki zanjeeron (aur tight underwear) mein jakde hue hain. 
+                Public mein ek minor adjustment karne ke liye hume idhar-udhar dekhna padta hai. <b>THIS IS NOT TRUE FREEDOM!</b>
+            </p>
+        </div>
+
+        <!-- NEW: Poster Gallery -->
+        <div class="section-card" id="posters">
+            <h2>📸 Prachar Posters (Campaign)</h2>
+            <p style="color: #666; margin-bottom: 20px;">Party ke official prachar posters. Inko download karein aur status pe lagayein!</p>
+            
+            <div class="poster-gallery">
+                <!-- Poster 1 -->
+                <div class="poster-card">
+                    <!-- YAHAN APNE DOST KA BANAYA HUA POSTER LINK DAALO -->
+                    <img src="https://via.placeholder.com/600x800/ff9933/ffffff?text=GJP+Yuva+Neta+Poster" alt="https://funwithcomedy89-hue.github.io/gjp/IMG_20260815_142539_718.jpg">
+                    <div class="poster-caption">Vote for True Freedom! ✊</div>
+                </div>
+                
+                <!-- Poster 2 -->
+                <div class="poster-card">
+                    <!-- YAHAN DOOSRA POSTER LINK DAALO -->
+                    <img src="https://via.placeholder.com/600x800/138808/ffffff?text=Anti-Tight+Underwear+Rally" alt="https://funwithcomedy89-hue.github.io/gjp/IMG_20260815_142539_718.jpg">
+                    <div class="poster-caption">Maha-Rally at City Center 🚶‍♂️</div>
+                </div>
+            </div>
+        </div>
 
         <!-- Manifesto -->
-        <h2>Hamara Ghoshna Patra (Manifesto) 📜</h2>
-        <ul class="manifesto-list">
-            <li><b>1. Amendment in Constitution:</b> "Right to Khujli" ko Article 69 ke tehat 'Fundamental Right' ghoshit kiya jayega. ⚖️</li>
-            <li><b>2. Public Khujli Zones (PKZ):</b> Har 2 kilometer par AC wale private pods banaye jayenge jahan mard aaram se adjustment kar sakein. ⛺</li>
-            <li><b>3. Say NO to Tight Elastics:</b> Underwear ban banane wali sabhi company ko 'Comfort-First' policy apnaani padegi. 🩲</li>
-            <li><b>4. Anti-Judging Law:</b> Agar koi kisi ko public me khujate hue ghur kar dekhega, toh uspe seedha 5,000₹ ka jurmana lagega! 🚫👀</li>
-        </ul>
+        <div class="section-card" id="manifesto">
+            <h2>📜 Hamara Ghoshna Patra (Manifesto)</h2>
+            <ul class="manifesto-list">
+                <li><b>1. Amendment in Constitution:</b> "Right to Khujli" ko Article 69 ke tehat 'Fundamental Right' ghoshit kiya jayega. ⚖️</li>
+                <li><b>2. Public Khujli Zones (PKZ):</b> Har 2 kilometer par AC wale private pods banaye jayenge jahan mard aaram se adjustment kar sakein. ⛺</li>
+                <li><b>3. Say NO to Tight Elastics:</b> Underwear ban banane wali sabhi company ko 'Comfort-First' policy apnaani padegi. 🩲</li>
+                <li><b>4. Anti-Judging Law:</b> Agar koi kisi ko public me khujate hue ghur kar dekhega, toh uspe seedha 5,000₹ ka jurmana lagega! 🚫👀</li>
+            </ul>
+        </div>
 
         <!-- Flagship Scheme -->
         <div class="yojna-card">
             <h2>✨ Jay Gote Yojna ✨</h2>
-            <p style="font-size: 20px;">
+            <p style="font-size: 22px; line-height: 1.6;">
                 GJP ki sarkar aate hi har mard ko garmiyon ke mausam mein <b>DermiCool aur Navratna Powder</b> ka free packet har mahine ration ke saath diya jayega! <br><br>
-                <i>"Ab na rahegi ragaad, aur na rahegi jalan... GJP layega naya chalan!"</i> ❄️🧊
+                <i style="color: #ffd700;">"Ab na rahegi ragaad, aur na rahegi jalan... GJP layega naya chalan!"</i> ❄️🧊
             </p>
         </div>
 
         <!-- Call to Action -->
-        <button class="join-btn" onclick="joinParty()">Support The Movement ✊</button>
+        <div style="text-align: center; margin: 60px 0;" id="join">
+            <h3 style="color: #333;">Desh ko aapki zaroorat hai!</h3>
+            <button class="join-btn" onclick="joinParty()">Support The Movement ✊</button>
+        </div>
+
     </div>
 
     <footer>
-        <p>Issued in public interest by frustrated bros. 🤣<br>Disclaimer: Yeh ek parody website hai. Kripya public decency banaye rakhein!</p>
+        <p><strong>Issued in public interest by frustrated bros. 🤣</strong></p>
+        <p style="font-size: 12px; color: #888;">Disclaimer: Yeh ek parody/fun website hai. Kripya public decency banaye rakhein aur ise serious political party na samjhein!</p>
     </footer>
 
-    <!-- Audio for button click (Funny Spring Sound) -->
+    <!-- Audio for button click -->
     <audio id="khujliSound" src="https://www.myinstants.com/media/sounds/boing_spring.mp3"></audio>
 
     <script>
         function joinParty() {
-            // Play funny sound
             const sound = document.getElementById('khujliSound');
             sound.play().catch(e => console.log("Audio blocked."));
 
-            // Change Button Text
             const btn = document.querySelector('.join-btn');
             btn.innerText = "Sadasyata Praapt! 🎉";
             btn.style.background = "#138808";
+            btn.style.boxShadow = "0 8px 25px rgba(19, 136, 8, 0.5)";
 
-            // Show Funny Alert
             setTimeout(() => {
                 alert("Badhaai ho mard-e-mujahid! Aap Gote Janta Party (GJP) ke official member ban chuke hain. Ab aaram se khujaiye, party aapke saath hai! 🥜🤌");
             }, 300);
 
-            // Raining Emojis (Peanuts and Pinching hands)
-            const emojis = ['🥜', '🤌', '❄️', '🩲', '✊'];
-            for (let i = 0; i < 50; i++) {
+            const emojis = ['🥜', '🤌', '❄️', '🩲', '✊', '🗳️'];
+            for (let i = 0; i < 60; i++) {
                 setTimeout(() => {
                     let el = document.createElement('div');
                     el.className = 'emoji-drop';
                     el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
                     el.style.left = Math.random() * 100 + 'vw';
                     el.style.top = '-50px';
-                    el.style.animationDuration = (Math.random() * 2 + 2) + 's'; // 2 to 4 seconds fall
+                    el.style.animationDuration = (Math.random() * 2 + 2) + 's'; 
                     
                     document.body.appendChild(el);
-                    
-                    // Cleanup after fall
                     setTimeout(() => el.remove(), 4000);
-                }, i * 50); // Staggered drop
+                }, i * 40); 
             }
         }
     </script>
