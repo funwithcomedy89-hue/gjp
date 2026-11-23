@@ -4,16 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#09090b" />
-  <meta name="description" content="Hide and reveal secret messages inside any single emoji." />
+  <meta name="description" content="Hide and reveal encrypted messages inside any single emoji." />
   <title>VEIL — Emoji Steganography</title>
 
   <link rel="manifest" href="./manifest.json" />
   <link rel="icon" type="image/svg+xml" href="./icon.svg" />
-  <link rel="apple-touch-icon" href="./icon-192.png" />
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-  <main class="shell">
+  <main class="shell" id="appShell">
     <header class="topbar">
       <div class="brand">
         <img src="./icon.svg" alt="VEIL logo" class="brand-mark" width="28" height="28" />
@@ -23,9 +22,14 @@
         </div>
       </div>
 
-      <button id="installBtn" class="btn-ghost hidden" type="button">
-        Install
-      </button>
+      <div class="header-actions">
+        <button id="pipBtn" class="btn-ghost hidden" type="button" title="Open floating mini window">
+          Mini
+        </button>
+        <button id="installBtn" class="btn-ghost hidden" type="button">
+          Install
+        </button>
+      </div>
     </header>
 
     <nav class="tabs" role="tablist" aria-label="Mode">
@@ -67,7 +71,10 @@
       <div class="field">
         <div class="label-row">
           <label for="secretInput">Secret message</label>
-          <span id="byteCount" class="mono-meta">0 B</span>
+          <div class="inline-actions">
+            <span id="byteCount" class="mono-meta">0 B</span>
+            <button id="clearEncodeBtn" class="link-btn hidden" type="button">Clear</button>
+          </div>
         </div>
         <textarea
           id="secretInput"
@@ -80,7 +87,7 @@
       <div class="field">
         <div class="label-row">
           <label for="encodeKey">Passphrase</label>
-          <span class="meta">Optional · AES-256</span>
+          <span class="meta">Optional · AES-256-GCM</span>
         </div>
         <div class="input-wrap">
           <input
@@ -89,9 +96,23 @@
             placeholder="Leave blank for open decode"
             autocomplete="off"
           />
-          <button class="toggle-vis" type="button" data-target="encodeKey" aria-label="Toggle passphrase visibility">
+          <button class="toggle-vis" type="button" aria-label="Toggle passphrase visibility">
             Show
           </button>
+        </div>
+
+        <!-- Strength Meter -->
+        <div id="strengthWrap" class="strength-wrap hidden" aria-live="polite">
+          <div class="strength-bars" id="strengthBars">
+            <span class="s-bar"></span>
+            <span class="s-bar"></span>
+            <span class="s-bar"></span>
+            <span class="s-bar"></span>
+          </div>
+          <div class="strength-meta">
+            <span id="strengthLabel" class="strength-label">Weak</span>
+            <span id="strengthTime" class="mono-meta"></span>
+          </div>
         </div>
       </div>
 
@@ -106,7 +127,10 @@
             <p class="result-title" id="encodedStatus">Ready to copy</p>
             <p class="mono-meta" id="encodedStats"></p>
           </div>
-          <button id="copyEncodedBtn" class="btn-secondary" type="button">Copy</button>
+          <div class="result-btns">
+            <button id="shareEncodedBtn" class="btn-ghost hidden" type="button">Share</button>
+            <button id="copyEncodedBtn" class="btn-secondary" type="button">Copy</button>
+          </div>
         </div>
       </div>
     </section>
@@ -116,12 +140,15 @@
       <div class="field">
         <div class="label-row">
           <label for="encodedInput">Encoded emoji</label>
-          <button id="pasteBtn" class="link-btn" type="button">Paste</button>
+          <div class="inline-actions">
+            <button id="clearDecodeBtn" class="link-btn hidden" type="button">Clear</button>
+            <button id="pasteBtn" class="link-btn" type="button">Paste</button>
+          </div>
         </div>
         <textarea
           id="encodedInput"
           rows="3"
-          placeholder="Paste the emoji or message here..."
+          placeholder="Paste or share the emoji here..."
           spellcheck="false"
         ></textarea>
       </div>
@@ -138,7 +165,7 @@
             placeholder="Enter passphrase to unlock"
             autocomplete="off"
           />
-          <button class="toggle-vis" type="button" data-target="decodeKey" aria-label="Toggle passphrase visibility">
+          <button class="toggle-vis" type="button" aria-label="Toggle passphrase visibility">
             Show
           </button>
         </div>
@@ -158,7 +185,7 @@
     </section>
 
     <footer class="foot">
-      <span>100% client-side · Zero server storage</span>
+      <span>Client-side · 600k PBKDF2</span>
       <span id="toast" class="toast" role="status" aria-live="polite"></span>
     </footer>
   </main>
