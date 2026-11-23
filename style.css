@@ -8,7 +8,10 @@
   --muted: #8f8f99;
   --accent: #fafafa;
   --accent-ink: #09090b;
-  --danger: #f87171;
+  --weak: #f87171;
+  --fair: #fbbf24;
+  --strong: #d4d4d8;
+  --hardened: #4ade80;
   --radius: 10px;
   --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
   --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
@@ -47,7 +50,7 @@ body {
   padding: 22px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 }
 
 /* Header */
@@ -55,7 +58,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 10px;
 }
 
 .brand {
@@ -82,6 +85,12 @@ body {
   font-size: 0.72rem;
   color: var(--muted);
   margin-top: 2px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 /* Tabs */
@@ -117,7 +126,7 @@ body {
 .panel {
   display: none;
   flex-direction: column;
-  gap: 16px;
+  gap: 15px;
 }
 
 .panel.active {
@@ -127,7 +136,7 @@ body {
 .field {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 7px;
 }
 
 .label-row {
@@ -135,6 +144,12 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 8px;
+}
+
+.inline-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 label {
@@ -163,7 +178,7 @@ label {
 
 .emoji-chip,
 .emoji-custom {
-  height: 42px;
+  height: 40px;
   width: 100%;
   border-radius: 8px;
   border: 1px solid var(--border);
@@ -209,7 +224,7 @@ input[type="text"]:not(.emoji-custom) {
   color: var(--text);
   font-family: var(--font-sans);
   font-size: 0.92rem;
-  padding: 11px 13px;
+  padding: 10px 13px;
   outline: none;
   resize: vertical;
   transition: border-color 0.15s ease;
@@ -251,6 +266,72 @@ input::placeholder {
   color: var(--text);
 }
 
+/* Passphrase Strength Meter */
+.strength-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 2px;
+}
+
+.strength-bars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+}
+
+.s-bar {
+  height: 3px;
+  border-radius: 99px;
+  background: var(--border);
+  transition: background 0.18s ease;
+}
+
+.strength-bars[data-tone="weak"] .s-bar.filled {
+  background: var(--weak);
+}
+
+.strength-bars[data-tone="fair"] .s-bar.filled {
+  background: var(--fair);
+}
+
+.strength-bars[data-tone="strong"] .s-bar.filled {
+  background: var(--strong);
+}
+
+.strength-bars[data-tone="hardened"] .s-bar.filled {
+  background: var(--hardened);
+}
+
+.strength-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.strength-label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.strength-label[data-tone="weak"] {
+  color: var(--weak);
+}
+
+.strength-label[data-tone="fair"] {
+  color: var(--fair);
+}
+
+.strength-label[data-tone="strong"] {
+  color: var(--strong);
+}
+
+.strength-label[data-tone="hardened"] {
+  color: var(--hardened);
+}
+
 /* Buttons */
 .btn-primary {
   width: 100%;
@@ -264,23 +345,28 @@ input::placeholder {
   transition: opacity 0.15s ease, transform 0.08s ease;
 }
 
-.btn-primary:hover {
+.btn-primary:hover:not(:disabled) {
   opacity: 0.92;
 }
 
-.btn-primary:active {
+.btn-primary:active:not(:disabled) {
   transform: scale(0.99);
+}
+
+.btn-primary:disabled {
+  opacity: 0.55;
+  cursor: wait;
 }
 
 .btn-secondary,
 .btn-ghost {
-  height: 34px;
-  padding: 0 13px;
+  height: 33px;
+  padding: 0 11px;
   border-radius: 8px;
   border: 1px solid var(--border-strong);
   background: var(--elevated);
   color: var(--text);
-  font: 500 0.78rem var(--font-sans);
+  font: 500 0.76rem var(--font-sans);
   cursor: pointer;
   white-space: nowrap;
   transition: border-color 0.15s ease, background 0.15s ease;
@@ -300,7 +386,7 @@ input::placeholder {
   border: 0;
   background: transparent;
   color: var(--text);
-  font: 500 0.75rem var(--font-sans);
+  font: 500 0.74rem var(--font-sans);
   cursor: pointer;
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -311,7 +397,7 @@ input::placeholder {
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 13px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -320,19 +406,19 @@ input::placeholder {
 .result-top {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 11px;
 }
 
 .emoji-preview {
-  width: 48px;
-  height: 48px;
+  width: 46px;
+  height: 46px;
   flex-shrink: 0;
   border-radius: 9px;
   background: var(--elevated);
   border: 1px solid var(--border);
   display: grid;
   place-items: center;
-  font-size: 1.65rem;
+  font-size: 1.6rem;
   user-select: all;
 }
 
@@ -342,8 +428,14 @@ input::placeholder {
 }
 
 .result-title {
-  font-size: 0.84rem;
+  font-size: 0.82rem;
   font-weight: 500;
+}
+
+.result-btns {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .decoded-text {
@@ -357,17 +449,17 @@ input::placeholder {
 }
 
 .field.needs-key input {
-  border-color: var(--danger);
+  border-color: var(--weak);
 }
 
 .field.needs-key #lockBadge {
-  color: var(--danger);
+  color: var(--weak);
 }
 
 /* Footer */
 .foot {
   border-top: 1px solid var(--border);
-  padding-top: 14px;
+  padding-top: 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -387,12 +479,57 @@ input::placeholder {
   display: none !important;
 }
 
-@media (max-width: 400px) {
+/* Compact Pop-up / Android Freeform / Desktop PiP Mode */
+body.pip-mode {
+  padding: 0;
+  display: block;
+  background: var(--surface);
+}
+
+body.pip-mode .shell {
+  max-width: none;
+  min-height: 100dvh;
+  border: 0;
+  border-radius: 0;
+  padding: 14px;
+  gap: 13px;
+}
+
+@media (max-width: 400px), (max-height: 620px) {
+  body {
+    padding: 10px;
+  }
+
   .shell {
-    padding: 18px 16px;
+    padding: 15px 14px;
+    gap: 13px;
+  }
+
+  .panel {
+    gap: 12px;
+  }
+
+  .subtitle {
+    display: none;
   }
 
   .emoji-bar {
     grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+  }
+
+  .emoji-chip,
+  .emoji-custom {
+    height: 36px;
+    font-size: 1.05rem;
+  }
+
+  textarea {
+    min-height: 68px;
+    padding: 9px 11px;
+  }
+
+  .btn-primary {
+    height: 40px;
   }
 }
